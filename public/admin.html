@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+</head>
+<body>
+    <h1>Admin Page - Toggle Status</h1>
+    <button id="toggleButton">Loading...</button>
+
+    <script>
+        // Fetch the current status when the page loads
+        fetch('/api/status')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('toggleButton').textContent = data.status;
+            });
+
+        // Toggle the status when the button is clicked
+        document.getElementById('toggleButton').addEventListener('click', () => {
+            fetch('/api/toggle-status', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('toggleButton').textContent = data.status;
+                });
+        });
+    </script>
+</body>
+</html>
+ 

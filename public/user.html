@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Page</title>
+</head>
+<body>
+    <h1>User Page - Status</h1>
+    <p id="statusDisplay">Loading...</p>
+
+    <script>
+        // Fetch the current status
+        function fetchStatus() {
+            fetch('/api/status')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('statusDisplay').textContent = data.status;
+                });
+        }
+
+        // Fetch status every 2 seconds to keep it updated
+        setInterval(fetchStatus, 2000);
+        fetchStatus();  // Fetch on page load
+    </script>
+</body>
+</html>
+ 
